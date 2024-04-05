@@ -1,0 +1,21 @@
+{% extends 'layouts/navbar.html' %}
+{% load bootstrap4 %}
+
+{% block title %}Registration{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <h2>Registration Form</h2>
+        {% if user.is_authenticated %}
+            <p> YOU already registered </p>
+        {% else %}
+            <form method="post">
+                {% csrf_token %}
+                {% bootstrap_form form %}
+                <button type="submit" class="btn btn-primary">register</button>
+            </form>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

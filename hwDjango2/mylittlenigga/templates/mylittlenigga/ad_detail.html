@@ -1,0 +1,23 @@
+{% extends 'layouts/navbar.html' %}
+{% load bootstrap4 %}
+
+{% block title %}Task Detail{% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-body">
+                <h1 class="card-title">{{ ad.title }}</h1>
+                <p class="card-text">Info: {{ ad.info }}</p>
+            </div>
+        </div>
+        <a href="{% url 'comment_create' pk=ad.pk %}" class="btn btn-submit mt-3"> Comment </a>
+        {% for comment in ad.comment_set.all %}
+            <div class="card mt-3">
+                <div class="card-body">
+                    <p class="card-text">Comment: {{ comment.text }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

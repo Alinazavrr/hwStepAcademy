@@ -1,0 +1,32 @@
+{% extends 'layouts/navbar.html' %}
+{% load bootstrap4 %}
+{% load my_tags %}
+
+{% block title %}List of Tasks{% endblock %}
+
+
+
+
+{% block content %}
+
+
+<p>  {% length 'apple' %} </p>
+<p> {% current_day %} </p>
+<p> {{ 'mrBoosBus'|without_o }} </p>
+
+    <div class="container d-flex justify-content-between">
+        {% for ad in ads %}
+            <div class="card mb-4" style="width: 18rem;">
+                <div class="card-header">
+                    <img src="{{ ad.img.url }}" class="card-img-top" alt="...">
+                    <h4 class="card-title"><a href="{% url 'ad_detail' pk=ad.pk %}">{{ ad.title }}</a></h4>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">Description: {{ ad.info }}</p>
+                    <a href="{% url 'ad_update' pk=ad.pk %}" class="btn btn-warning mt-3">Update Advertistment</a>
+                    <a href="{% url 'ad_delete' pk=ad.pk %}" class="btn btn-danger mt-1">Delete Advertistment</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

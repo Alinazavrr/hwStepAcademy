@@ -1,0 +1,12 @@
+{% extends 'layouts/navbar.html' %}
+{% load bootstrap4 %}
+
+{% block title %}Ad{% endblock %}
+
+{% block content %}
+    <form method="post" class="form" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <button button_type="submit" button_class="btn-primary">Submit</button>
+    </form>
+{% endblock %}
