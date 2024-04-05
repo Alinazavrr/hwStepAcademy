@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+
+    django_app:
+      build: .
+      command: ["bash", "./start.sh"]
+      environment:
+        - DB_HOST=db
+        - DB_PORT=5432
+        - DB_NAME=postgres
+        - DB_USER=postgres
+        - DB_PASSWORD=postgres
+        - SECRET_KEY=django-insecure-e%xuk^qd@xvq#-j2z0h960)5%8fagc6@bc4_l0^2c6aw2abpz2
+      ports:
+        - 8000:8000
+
+    db:
+      image: postgres:13.3-alpine
+      volumes:
+        - postgres_data:/var/lib/postgresql/data
+      environment:
+        - POSTGRES_PASSWORD=postgres
+        - POSTGRES_DB=postgres
+        - POSTGRES_USER=postgres
+
+volumes:
+  postgres_data:
